@@ -10,7 +10,7 @@
         "node": "^10"
     },
     "scripts": {
-        "start": "node index.js"
+        "start": "npx cds run"
     },
     "cds": {
         "requires": {

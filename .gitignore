@@ -21,3 +21,6 @@ mta_archives/
 .DS_Store
 *.orig
 *.log
+*.jar
+default-env.json
+.vscode
