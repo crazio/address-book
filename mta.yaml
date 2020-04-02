@@ -1,0 +1,46 @@
+_schema-version: 2.0.0
+ID: address-book
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true  
+
+modules:
+ # --------------------- SERVER MODULE ------------------------
+ - name: address-book-srv
+   deployed-after:
+     - db
+   type: nodejs
+   path: srv
+   parameters:
+     memory: 512M
+     disk-quota: 1024M
+   requires:
+    - name: address-book-db
+   provides:
+    - name: srv
+      properties:
+        srv-url: ${default-url}
+
+ # -------------------- DB MODULE ------------------------
+ - name: db
+   type: hdb
+   path: db
+   parameters:
+     memory: 256M
+     disk-quota: 512M
+   requires:
+    - name: address-book-db
+   provides:
+    - name: db
+
+resources:
+ - name: address-book-db
+   type: com.sap.xs.hdi-container
+   parameters:
+     service: hanatrial
+     service-plan: hdi-shared
+     config: { schema: ADDRESS_BOOK_SCP }
+   properties:
+     hdi-service-name: ${service-name}
+
