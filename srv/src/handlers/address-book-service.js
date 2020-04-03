@@ -2,10 +2,10 @@ const events = require('../constants/events');
 
 const { AddressBookService } = require('../constants/cdsGen/services.json');
 
-module.exports = (srv) => {
+module.exports = srv => {
 
-    srv.before(events.CREATE_EVENT, AddressBookService.entities.Addresses.name, (req) => {
-        //Do validation here
+    srv.after(events.READ_EVENT, AddressBookService.entities.Persons.name, each => {
+        each.fullName = [each.firstName, each.middleName, each.lastName].filter(str => str).join(' ');
     });
-    
+
 }
