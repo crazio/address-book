@@ -14,7 +14,9 @@
         "start": "npx cds run",
         "build": "cds build/all --clean && node ./srv/src/utils/generate",
         "deploy-sqlite": "cds deploy -2 sqlite:srv/local.db --no-save",
-        "local": "npm run build && npm run deploy-sqlite && npm run start"
+        "local": "npm run build && npm run deploy-sqlite && npm run start",
+        "restart-local": "npm run build && npm run start",
+        "debug": "node --inspect node_modules/@sap/cds/bin/cds.js run"
     },
     "cds": {
         "requires": {
