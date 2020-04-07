@@ -3,5 +3,6 @@ module.exports = {
     CREATE_EVENT: "CREATE",
     UPDATE_EVENT: "UPDATE",
     DELETE_EVENT: "DELETE",
-    UPSERT_EVENT: "UPSERT"
+    UPSERT_EVENT: "UPSERT",
+    SAVE_EVENT: "SAVE"
 }

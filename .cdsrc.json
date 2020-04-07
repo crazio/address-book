@@ -8,7 +8,8 @@
                 "options": {
                     "model": [
                         "db",
-                        "srv"
+                        "srv",
+                        "app"
                     ]
                 }
             },
@@ -21,6 +22,10 @@
                         "srv"
                     ]
                 }
+            },
+            {
+                "for": "fiori",
+                "src": "app/person"
             }
         ]
     }
