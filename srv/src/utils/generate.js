@@ -89,16 +89,29 @@ const getServiceObj = (entities) => {
     return serviceObj.build();
 }
 
+const getVirtualFields = (entity, dbObj) => {
+    return Object.values(dbObj[entity].elements)
+                .filter(field => field.hasOwnProperty('virtual') && field.virtual)
+                .reduce((arr, field) => {
+                    arr.push(field.name);
+                    return arr;
+                }, []);
+}
+
+const getDbEntitiesObj = (dbObj) => {
+    const dbEntities = getDbObj(dbObj);
+    Object.keys(dbEntities).forEach(key => {
+        dbEntities[key]['virtuals'] = getVirtualFields(key, dbObj)
+    });
+    return dbEntities;
+}
+
 const writeGenToJson = (dbObj, serviceObj) => {
-    console.log("Write entities");
-    writeToJSON(getDbObj(dbObj), 'entities');
-    console.log("Write services");
+    writeToJSON(getDbEntitiesObj(dbObj), 'entities');
     writeToJSON(getServiceObj(serviceObj), 'services');
-    console.log("Objects are written")
 }
 
 const generate = async () => {
-    console.log("Connecting to db");
     const db = await cds.connect.to('db');
     const dbObj = convertDbToObj(db.entities(common.NAMESPACE));
     writeGenToJson(
@@ -106,7 +119,6 @@ const generate = async () => {
         filterObjectByKeys(dbObj, (arg) => !isPureEntity(arg))
     );
     cds.disconnect();
-    console.log("Success!!!")
 }
 
 generate();

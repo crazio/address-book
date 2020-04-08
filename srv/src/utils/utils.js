@@ -1,10 +1,5 @@
-
-const getWithoutVirtualFields = (entity, fields) =>
-    Object.keys(entity).filter(key => !fields.includes(key))
-                       .reduce((newObj, key) => { 
-                           return { ...newObj, [key]: entity[key] } 
-                        }, {})
+const queryModifer = require('./queryModifier');
 
 module.exports = {
-    getWithoutVirtualFields
+    queryModifer
 }

@@ -75,17 +75,20 @@ annotate services.AddressBookService.Persons with @(
 
     firstName
         @Search.defaultSearchElement : true
-        @title : '{i18n>firstName}';
+        @title : '{i18n>firstName}'
+        @Common.FieldControl : #Mandatory;
 
     lastName
         @Search.defaultSearchElement : true
-        @title : '{i18n>lastName}';
+        @title : '{i18n>lastName}'
+        @Common.FieldControl : #Mandatory;
 
     middleName
         @title : '{i18n>middleName}';
 
     gender
-        @title : '{i18n>gender}';
+        @title : '{i18n>gender}'
+        @Common.FieldControl : #Mandatory;
 
     address
         @title : '{i18n>address}'
