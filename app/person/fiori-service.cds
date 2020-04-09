@@ -1,6 +1,6 @@
 using com.leverx.book as services from '../../srv/index';
 
-annotate services.AddressBookService.Persons with @(
+annotate services.PersonService.PersonAttributes with @(
     UI : {
         HeaderInfo : {
             TypeName       : '{i18n>person}',
@@ -38,15 +38,15 @@ annotate services.AddressBookService.Persons with @(
 
         FieldGroup#AddressInfo : {
             Data : [
-                { $Type : 'UI.DataField', Value : address.city, Label : '{i18n>city}' },
-                { $Type : 'UI.DataField', Value : address.postalCode, Label : '{i18n>postalCode}' },
-                { $Type : 'UI.DataField', Value : address.street, Label : '{i18n>street}' },
-                { $Type : 'UI.DataField', Value : address.houseNumber, Label : '{i18n>houseNumber}' },
-                { $Type : 'UI.DataField', Value : address.roomNumber, Label : '{i18n>roomNumber}' },
-                { $Type : 'UI.DataField', Value : address.phone, Label : '{i18n>phone}' },
-                { $Type : 'UI.DataField', Value : address.email, Label : '{i18n>email}' },
-                { $Type : 'UI.DataField', Value : address.extraEmail, Label : '{i18n>extraEmail}' },
-                { $Type : 'UI.DataField', Value : address.country.name, Label : '{i18n>countryName}' }
+                { $Type : 'UI.DataField', Value : city, Label : '{i18n>city}' },
+                { $Type : 'UI.DataField', Value : postalCode, Label : '{i18n>postalCode}' },
+                { $Type : 'UI.DataField', Value : street, Label : '{i18n>street}' },
+                { $Type : 'UI.DataField', Value : houseNumber, Label : '{i18n>houseNumber}' },
+                { $Type : 'UI.DataField', Value : roomNumber, Label : '{i18n>roomNumber}' },
+                { $Type : 'UI.DataField', Value : phone, Label : '{i18n>phone}' },
+                { $Type : 'UI.DataField', Value : email, Label : '{i18n>email}' },
+                { $Type : 'UI.DataField', Value : extraEmail, Label : '{i18n>extraEmail}' },
+                { $Type : 'UI.DataField', Value : country, Label : '{i18n>countryName}' }
             ]
         }
     }
@@ -59,9 +59,10 @@ annotate services.AddressBookService.Persons with @(
                 Label : '{i18n>gender}',
                 CollectionPath : 'Genders',
                 Parameters : [
-                    { $Type : 'Common.ValueListParameterInOut', 
-                      LocalDataProperty : gender_ID,
-                      ValueListProperty : 'ID'
+                    { 
+                        $Type : 'Common.ValueListParameterInOut', 
+                        LocalDataProperty : gender_ID,
+                        ValueListProperty : 'ID'
                     },
                     {
                         $Type : 'Common.ValueListParameterDisplayOnly',
@@ -90,9 +91,9 @@ annotate services.AddressBookService.Persons with @(
         @title : '{i18n>gender}'
         @Common.FieldControl : #Mandatory;
 
-    address
-        @title : '{i18n>address}'
-        @Common.FieldControl : #ReadOnly;
+    // address
+    //     @title : '{i18n>address}'
+    //     @Common.FieldControl : #ReadOnly;
 
     fullName
         @title : '{i18n>fullName}';

@@ -5,6 +5,8 @@ using com.leverx.book as data from '../models/index';
 entity PersonAttributes as
     select from data.Persons {
         *,
+        // gender.ID            as gender_ID,
+        // gender.name          as genderName,
         address.city         as city,
         address.postalCode   as postalCode,
         address.street       as street,
@@ -15,4 +17,7 @@ entity PersonAttributes as
         address.extraEmail   as extraEmail,
         address.countryCode  as countryCode,
         address.country.name as country
+    }
+    excluding {
+        address
     };

@@ -7,8 +7,8 @@
         "description": "Sample Application",
         "i18n": "i18n/i18n.properties",
         "dataSources": {
-            "AddressBookService": {
-                "uri": "/address-book/",
+            "PersonService": {
+                "uri": "/person/",
                 "type": "OData",
                 "settings": {
                     "odataVersion": "4.0"
@@ -33,7 +33,7 @@
                 "uri": "i18n/i18n.properties"
             },
             "": {
-                "dataSource": "AddressBookService",
+                "dataSource": "PersonService",
                 "settings": {
                     "synchronizationMode": "None",
                     "operationMode": "Server",
@@ -55,7 +55,7 @@
                     "target": "PersonsList"
                 },
                 {
-                    "pattern": "Persons({key}):?query:",
+                    "pattern": "PersonAttributes({key}):?query:",
                     "name": "PersonsDetails",
                     "target": "PersonsDetails"
                 }
@@ -67,7 +67,7 @@
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "entitySet": "Persons",
+                            "entitySet": "PersonAttributes",
                             "navigation": {
                                 "Persons": {
                                     "detail": {
@@ -84,7 +84,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "entitySet": "Persons"
+                            "entitySet": "PersonAttributes"
                         }
                     }
                 }
@@ -103,4 +103,5 @@
         "registrationIds": [],
         "archeType": "transactional"
     }
+    
 }
