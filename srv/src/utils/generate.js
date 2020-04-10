@@ -50,6 +50,14 @@ const convertDbToObj = (entities) => {
     return objBuilder.build();
 }
 
+const getElementsArray = (elementsObjArr) => {
+    return Object.values(elementsObjArr).reduce(
+        (arr, element) => {
+            arr.push(element.name);
+            return arr;
+        }, []);
+} 
+
 const getDbObj = (entities, nameModifier) => {
     const dbObj = new ObjectBuilder();
     for (const [key, value] of Object.entries(entities)) {
@@ -58,6 +66,7 @@ const getDbObj = (entities, nameModifier) => {
             name, new ObjectBuilder()
                 .addProperty('name', name)
                 .addProperty('cdsName', value.name)
+                .addProperty('elements', getElementsArray(value.elements))
                 .build()
         );
     }

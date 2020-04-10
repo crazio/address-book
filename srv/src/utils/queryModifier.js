@@ -1,6 +1,5 @@
 const entities = require('../constants/cdsGen/entities');
-
-const QUERY_ACTION = ['INSERT', 'UPDATE'];
+const actions = require('../constants/actions');
 
 const getPureEntityName = entityName => entityName.substring(entityName.lastIndexOf('.') + 1);
 
@@ -8,7 +7,7 @@ const getDbEntityValue = entityName => entities[entityName];
 
 const getDbEntityVirtuals = entityName => getDbEntityValue(entityName).virtuals;
 
-const getQueryAction = query => Object.keys(query).find(key => QUERY_ACTION.includes(key));
+const getQueryAction = query => Object.keys(query).find(key => actions.includes(key));
 
 const getQueryActionValue = (query, action) => query[action];
 

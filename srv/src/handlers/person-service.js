@@ -1,8 +1,8 @@
 const events = require('../constants/events');
-const { queryModifer } = require('../utils/utils');
+const utils = require('../utils/utils');
 
 const { PersonService } = require('../constants/cdsGen/services.json');
-const { Persons } = require('../constants/cdsGen/entities.json');
+const { Persons, Addresses } = require('../constants/cdsGen/entities.json');
 
 module.exports = srv => {
 
@@ -28,9 +28,12 @@ module.exports = srv => {
     // remove virtual fields from insert/update query for all entries
     // seems like a bug: fiori sends virtual fields also to backend for insert or update,
     //                   but virtual fields doesn't exist in db, that why we remove them
-    srv.before(events.SAVE_EVENT, (req) => {
-        console.log(req.query);
-        req.query = queryModifer.getQueryWithoutVirtuals(req.query, req.target.name)
+    srv.on(events.SAVE_EVENT, PersonService.entities.PersonAttributes.name, (req) => {
+        // console.log(req.query);
+        // req.query = queryModifer.getQueryWithoutVirtuals(req.query, req.target.name)
+        console.log(utils.queryBuilder.getDraftSaveData(
+            req.query, [Persons.name, Addresses.name], req.data
+        ));
     });
 
 }

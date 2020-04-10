@@ -1,0 +1,1 @@
+module.exports = ['INSERT', 'UPDATE', 'READ', 'DELETE']
